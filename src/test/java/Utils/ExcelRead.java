@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,29 +32,43 @@ public class ExcelRead {
   
   
 
-public String getCelldata(String sheetName,int rownum,int columnum)
+public String getCelldata(int sheetIndex,int rownum,int columnum)
   {
-	 sh=wb.getSheet(sheetName);
+	 sh=wb.getSheetAt(sheetIndex);
 	  cell=sh.getRow(rownum).getCell(columnum);
-	  String data=cell.getStringCellValue();
-	  return data;
+	  if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+			return cell.getStringCellValue();
+		} else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+			return String.valueOf(cell.getNumericCellValue());
+		} else if (cell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
+			return String.valueOf(cell.getBooleanCellValue());
+		} else if (cell.getCellType() == Cell.CELL_TYPE_BLANK) {
+			return "";
+		}
+	  /*String data=cell.getStringCellValue();
+	  return data;*/
+	return null;
   }
   
 
 
-public int getrowcount(String sheetName)
+public int getrowcount(int sheetIndex)
  {
-	sh=wb.getSheet(sheetName);
+	sh=wb.getSheetAt(sheetIndex);
 	rowcount = sh.getLastRowNum()-sh.getFirstRowNum();
 	 return rowcount;
  }
-public int getcolumncount(String sheetName)
+public int getcolumncount(int sheetIndex)
 {
-	 sh=wb.getSheet(sheetName);
+	 sh=wb.getSheetAt(sheetIndex);
 	 row=sh.getRow(0);
 	 columncount=row.getLastCellNum();
 	 return columncount;
 }
 
 
+
+
 }
+
+
