@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="37312" started-at="2017-08-08T14:53:55Z" finished-at="2017-08-08T14:54:33Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="37312" started-at="2017-08-08T14:53:55Z" finished-at="2017-08-08T14:54:33Z">
+      <class name="Testcases.Createclient">
+        <test-method status="PASS" signature="Setup()[pri:0, instance:Testcases.Createclient@59f99ea]" name="Setup" is-config="true" duration-ms="9315" started-at="2017-08-08T09:53:55Z" finished-at="2017-08-08T09:54:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="createClient()[pri:0, instance:Testcases.Createclient@59f99ea]" name="createClient" duration-ms="27701" started-at="2017-08-08T09:54:05Z" finished-at="2017-08-08T09:54:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createClient -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:Testcases.Createclient@59f99ea]" name="CloseBrowser" is-config="true" duration-ms="269" started-at="2017-08-08T09:54:32Z" finished-at="2017-08-08T09:54:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
+      </class> <!-- Testcases.Createclient -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
