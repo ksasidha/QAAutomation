@@ -17,17 +17,17 @@ public  Object[][] Userdata() throws Exception
 
 {
 	
-	Object[][] data=testdata("C:\\Kripa\\Automation\\Selenium\\Automationqa\\src\\test\\java\\Utils\\Testdata.xlsx","Sheet1");
+	Object[][] data=testdata("C:\\Kripa\\Automation\\Selenium\\Automationqa\\src\\test\\java\\Utils\\Testdata.xlsx",0);
     return data;
 }
 
-public  Object[][] testdata(String path,String SheetName) throws Exception{
+public  Object[][] testdata(String path,int SheetNum) throws Exception{
        // Read rd=new Read();
      //Object[][] testObjArray = rd.getExcelData("C:\\Kripa\\Automation\\Selenium\\Automationqa\\src\\test\\java\\Utils\\Testdata.xlsx","Sheet1");
 	Object[][] testObjArray=null;
    ExcelRead er=new ExcelRead(path);
-   int rowcount=er.getrowcount(SheetName);
-   int columncount=er.getcolumncount(SheetName);
+   int rowcount=er.getrowcount(SheetNum);
+   int columncount=er.getcolumncount(SheetNum);
    
    testObjArray = new Object [rowcount][columncount];
    for (int i=1 ;i<=rowcount;i++)
@@ -37,7 +37,7 @@ public  Object[][] testdata(String path,String SheetName) throws Exception{
 		 {
 			
 			 
-			 testObjArray[i-1][j]=er.getCelldata(SheetName, i, j);
+			 testObjArray[i-1][j]=er.getCelldata(SheetNum, i, j);
 			 	//System.out.println(arrayExcelData[i-1][j]);
 			
 				// TODO Auto-generated catch block

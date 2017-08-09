@@ -55,11 +55,11 @@ public class verifyLogin {
 	 	  //l.logintoApplication(er.getCelldata("Sheet1", i, 0);
 	  ExcelRead er=new ExcelRead("C:\\Kripa\\Automation\\Selenium\\Automationqa\\src\\test\\java\\Utils\\Testdata.xlsx");
 	   
-	  for (int i=1;i<=er.getrowcount("Sheet1");i++)
+	  for (int i=1;i<=er.getrowcount(0);i++)
 	  {
 	  l=new Login(driver);
-	  l.setUsername(er.getCelldata("Sheet1", i, 0));
-	  l.setPassword(er.getCelldata("Sheet1", i, 1));
+	  l.setUsername(er.getCelldata(0, i, 0));
+	  l.setPassword(er.getCelldata(0, i, 1));
 	  l.clickLogin();
 	  hp=new HomePage(driver);
 	  boolean verifyText=hp.verifyText();

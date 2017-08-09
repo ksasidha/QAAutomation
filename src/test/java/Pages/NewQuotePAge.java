@@ -16,6 +16,19 @@ public class NewQuotePAge {
  /* @FindBy(id="SecondaryPolicyHolder")
   WebElement coapp;*/
   
+  @FindBy(id="FName")
+	  WebElement fName;
+  
+  @FindBy(id="LName")
+  WebElement lName; 
+
+  
+  @FindBy(id="EmailAddress")
+  WebElement emailAddress;
+  
+  @FindBy(id="ClientDOB")
+  WebElement clientDOB;
+	 
   @FindBy(id="SFName")
   WebElement coappFname;
   
@@ -49,7 +62,36 @@ public class NewQuotePAge {
 	  this.driver=driver;
 	  PageFactory.initElements(driver, this);
 }
-  public void setContact(String contact)
+  
+  public void setApplicanttype() {
+	  
+	  List <WebElement> coapplicant=driver.findElements(By.xpath(".//*[@id='AppType_listbox']/child::li"));	
+	  
+	 
+	  if (!coapplicant.get(0).isSelected())
+  {
+		  coapplicant.get(0).isSelected();
+  }
+  }
+  public boolean checkclientInfo(String fname,String lname,String email,String dob)
+  {
+	  String ActualFname = fName.getAttribute("value");
+	  String ActualLname =lName.getAttribute("value");
+	  String ActualEmail=emailAddress.getAttribute("value");
+	  String Actualdob=clientDOB.getAttribute("value");
+	  
+	  if (ActualFname.equals(fname)&&(ActualLname.equals(lname))&&(ActualEmail.equals(email))&&(Actualdob.equals(dob)))
+	      return true;
+	  else
+		  return false;
+	  
+  }
+	  
+ 
+
+
+
+public void setContact(String contact)
   {   driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]")).click();
 	  driver.findElement(By.xpath(".//*[@id='ContactsDropDown-list']/div/child::ul/child::li[contains(text(),'"+contact+"')]")).click();
 	  

@@ -19,21 +19,15 @@ import Pages.Login;
 import Pages.NewQuotePAge;
 import Utils.ExcelRead;
 
-public class Createclient {
+public class Createclient extends TestBase{
 	Login l;
 	HomePage hp;
 	ClientManagement cm;
 	 NewQuotePAge nqp;
-	WebDriver driver;
 	
-	@BeforeTest
-	public void Setup()
-	{
-		driver=new ChromeDriver();
-		driver.get("https://qa.doverbayadmin.com");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-	}
+	//changes
+	
+	
 		
   @Test
   public void createClient() throws IOException {
@@ -80,6 +74,7 @@ public class Createclient {
 	  cm.createNewQuote();
 	  
 	  nqp=new NewQuotePAge(driver);
+	  Boolean str=nqp.checkclientInfo(er.getCelldata(1,i,0),er.getCelldata(1,i,1),er.getCelldata(1,i,2),er.getCelldata(1,i,3));
 	  nqp.setContact(er.getCelldata(1,i,14));
 	 // System.out.println(er.getCelldata(2,i,0));
 	  nqp.setCoapp(er.getCelldata(2,i,0));
@@ -90,9 +85,5 @@ public class Createclient {
 	  hp.logout();
 	}
  
-  @AfterTest
-  public void CloseBrowser()
-  {
-  	driver.close();
-  }
+  
 }
