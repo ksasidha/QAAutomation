@@ -55,6 +55,9 @@ public class NewQuotePAge {
   
   @FindBy(id="PriorCarrier")
   WebElement DBPCarr;
+  
+  @FindBy(id="bNextFake")
+  WebElement nextButton;
 
  WebDriver driver;
   
@@ -88,15 +91,12 @@ public class NewQuotePAge {
   }
 	  
  
-
-
-
 public void setContact(String contact)
   {   driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]")).click();
 	  driver.findElement(By.xpath(".//*[@id='ContactsDropDown-list']/div/child::ul/child::li[contains(text(),'"+contact+"')]")).click();
 	  
   }
-  public void setCoapp(String coApp) {
+public void setCoapp(String coApp) {
 	     
 	  List <WebElement> coapplicant=driver.findElements(By.xpath(".//*[@id='SecondaryPolicyHolder']"));	  
 	   
@@ -117,7 +117,55 @@ public void setContact(String contact)
   	 	 }
 }
   
+  public void setSFAutoPolicy(String sfAuto)
+  {
+	  List <WebElement> sfAutoPolicy=driver.findElements(By.xpath(".//*[@id='Insurance']"));
   
+       if (sfAuto.equalsIgnoreCase("Yes"))
+    	   sfAutoPolicy.get(0).click();
+       else
+    	   sfAutoPolicy.get(1).click();
   
+  }
+  public void setSFAutoNumber(String autoNum)
+  {
+	  
+	  SFPNAuto.sendKeys(autoNum);
+  }
+  public void  setFlood(String flood)
+  {
+	  List<WebElement>Flood=driver.findElements(By.xpath(".//*[@id='Flood']"));
+	  if(flood.equalsIgnoreCase("Yes"))
+			  {
+		      Flood.get(0).click();
+			  }
+	  else
+		  Flood.get(1).click();
+  }
+  public void setExDoverBayClient(String dbClient)
+  {
+	  List<WebElement>DBClient=driver.findElements(By.xpath(".//*[@id='DoverBayClient']"));
+	     if(dbClient.equalsIgnoreCase("true"))
+	     {
+	    	 
+	    	 DBClient.get(0).click();
+	    	 
+	     }
+	     else
+	    	 DBClient.get(1).click();
+  }
+  public void setPriorCarrier(String Pcarrier)
+  {
+	  DBPCarr.sendKeys(Pcarrier);
+  }
+  public void setDBPolicyNum(String DBPOlicy)
+  {
+	  DBPNum.sendKeys(DBPOlicy);
+  }
+  public void clickNext()
+  {
+	  nextButton.click();
+	  
+  }
   
 }

@@ -61,13 +61,18 @@ public class ClientManagement {
 	WebElement saveclient;
 	
 	@FindBy(id="phyAddressModal")
+	public
 	WebElement pAddressmodal; 
 	
 	@FindBy(id="mailAddressModal")
+	public
 	WebElement mAddressmodal; 
 	
 	@FindBy(id="dupesModal")
+	public
 	WebElement cdupesModal; 
+	
+	
 
 	WebDriver driver;
 	
@@ -204,7 +209,27 @@ public class ClientManagement {
     public void createNewQuote()
     {
     	CreateQuote.click();
-    	WebDriverWait wait = new WebDriverWait(driver, 60);
+    	
+    	Boolean paddressvalidation=checkPAValidation();
+   	 if (paddressvalidation)
+	  {
+		  paddressValidation();
+	  }
+   	 
+   	Boolean maddressvalidation=checkMAValidation();
+		  if (maddressvalidation)
+		  {
+			 maddressValidation();
+
+		  }
+		 Boolean dupesmodal=checkdupesmodal();
+		 
+		 if (dupesmodal)
+		 {selectDupesModal();}
+		 	 
+		    
+		 
+		/* WebDriverWait wait = new WebDriverWait(driver, 60);
     	wait.until(ExpectedConditions.visibilityOf(pAddressmodal));
     	if (pAddressmodal.isDisplayed())
     	{pAddressValidation();}
@@ -213,12 +238,73 @@ public class ClientManagement {
     	{mAddressValidation();}
     	wait.until(ExpectedConditions.visibilityOf(cdupesModal));
     	if (cdupesModal.isDisplayed())
-    	{selectDupesModal();}
+    	{selectDupesModal();}*/
 			
     }
+    
+    
+       
+   public Boolean checkPAValidation() {
+	   /* WebDriverWait wait = new WebDriverWait(driver, 60);
+    	wait.until(ExpectedConditions.visibilityOf(pAddressmodal));*/
+	    try
+	    {if (pAddressmodal.isDisplayed()) {
+	    	 return true;}
+	     }	 
+	    catch(Exception e) {}
+	     return false;
+   }
+   public Boolean checkMAValidation() {
+	    /*WebDriverWait wait = new WebDriverWait(driver, 60);
+   	   wait.until(ExpectedConditions.visibilityOf(mAddressmodal));*/
+	     try{
+	    	 if (mAddressmodal.isDisplayed())
+	    	 {
+	    	 return true;
+	         }
+	     } 
+	     catch (Exception e)
+	     {}
+	     
+		return false;
+  }
+   public boolean checkdupesmodal()
+   {
+	   /*WebDriverWait wait = new WebDriverWait(driver, 10);
+	   wait.until(ExpectedConditions.visibilityOf(cdupesModal));*/
+	  	   if (cdupesModal.isDisplayed()) {
+		   
+         return true;}
+	   
+	   else
+	     return false;}
    
+   public void paddressValidation()
+   {   WebDriverWait wait = new WebDriverWait(driver, 30);
+	   wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("useUSPSPhys"))));
+	   if (driver.findElement(By.id("useUSPSPhys")).isDisplayed())
+ 	   {
+ 		   driver.findElement(By.id("useUSPSPhys")).click();
+ 	   }
+ 	   else 
+ 	   {
+ 		   driver.findElement(By.id("useEnteredPhys")).click();
+ 	   }
+   }
+   public void maddressValidation()
+   {   WebDriverWait wait = new WebDriverWait(driver, 30);
+	   wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("useUSPSMail"))));
+	   if (driver.findElement(By.id("useUSPSMail")).isDisplayed())
+ 	   {
+ 		   driver.findElement(By.id("useUSPSMail")).click();
+ 	   }
+ 	   else 
+ 	   {
+ 		   driver.findElement(By.id("useEnteredMail")).click();
+ 	   }
+   }
    
-    public void pAddressValidation()
+    /*public void pAddressValidation()
     {  WebDriverWait wait = new WebDriverWait(driver, 60);
     	if (wait.until(ExpectedConditions.visibilityOf(pAddressmodal)).isDisplayed())
         {
@@ -234,8 +320,8 @@ public class ClientManagement {
         }
         
     	
-    }
-    public void mAddressValidation() {
+    }*/
+    /*public void mAddressValidation() {
     	WebDriverWait wait = new WebDriverWait(driver, 60);
     	if (wait.until(ExpectedConditions.visibilityOf(mAddressmodal)).isDisplayed())
         {
@@ -248,12 +334,12 @@ public class ClientManagement {
      		   driver.findElement(By.id("useEnteredMail")).click();
      	   }
         }
-        
-    }
+        */
+    
     public void selectDupesModal()
     {
     	WebDriverWait wait = new WebDriverWait(driver, 10);
-    	if (wait.until(ExpectedConditions.visibilityOf(cdupesModal)).isDisplayed())
+    	if (wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("finalSubmit")))).isDisplayed())
    	 {
    		 
    		 driver.findElement(By.id("finalSubmit")).click();
@@ -268,13 +354,14 @@ public class ClientManagement {
     	WebDriverWait wait = new WebDriverWait(driver, 60);
     	wait.until(ExpectedConditions.visibilityOf(pAddressmodal));
     	if (pAddressmodal.isDisplayed())
-    	{pAddressValidation();}
+    	{paddressValidation();}
     	wait.until(ExpectedConditions.visibilityOf(mAddressmodal));
     	if (mAddressmodal.isDisplayed())
-    	{mAddressValidation();}
+    	{maddressValidation();}
     	wait.until(ExpectedConditions.visibilityOf(cdupesModal));
     	if (cdupesModal.isDisplayed())
     	{selectDupesModal();}
     }
+	
     
 }
