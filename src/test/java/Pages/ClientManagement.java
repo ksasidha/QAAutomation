@@ -135,8 +135,8 @@ public class ClientManagement {
        //driver.findElement(By.xpath(".//*[@id='clientForm']/div[1]/div[8]/div[2]/span/span[1]/span[1]")).click();
        WebDriverWait wait = new WebDriverWait(driver, 10);
        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(".//*[@id='clientForm']/div[1]/div[8]/div[2]/span/span[1]/span[1]")))).click();;
-       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.tagName("ul"))));
-
+       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.tagName("ul"))));    	   	
+       
        List<WebElement> PState= (driver.findElements(By.tagName("li")));
 
          for (WebElement State:PState)
@@ -144,6 +144,7 @@ public class ClientManagement {
               if (State.getText().equals(state))
                 {
             	  State.click();
+            	  break;
                  }
               }    
   
@@ -189,6 +190,7 @@ public class ClientManagement {
               if (State.getText().equals(state))
                 {
             	  State.click();
+            	  break;
                  }
               }    
   
@@ -206,7 +208,7 @@ public class ClientManagement {
     }	
  
     
-    public void createNewQuote()
+    public void createNewQuote() throws Exception
     {
     	CreateQuote.click();
     	
@@ -244,9 +246,10 @@ public class ClientManagement {
     
     
        
-   public Boolean checkPAValidation() {
+   public Boolean checkPAValidation() throws Exception {
 	   /* WebDriverWait wait = new WebDriverWait(driver, 60);
     	wait.until(ExpectedConditions.visibilityOf(pAddressmodal));*/
+	   Thread.sleep(500);
 	    try
 	    {if (pAddressmodal.isDisplayed()) {
 	    	 return true;}
@@ -254,9 +257,10 @@ public class ClientManagement {
 	    catch(Exception e) {}
 	     return false;
    }
-   public Boolean checkMAValidation() {
+   public Boolean checkMAValidation() throws Exception {
 	    /*WebDriverWait wait = new WebDriverWait(driver, 60);
    	   wait.until(ExpectedConditions.visibilityOf(mAddressmodal));*/
+	   Thread.sleep(500);
 	     try{
 	    	 if (mAddressmodal.isDisplayed())
 	    	 {
@@ -268,10 +272,11 @@ public class ClientManagement {
 	     
 		return false;
   }
-   public boolean checkdupesmodal()
+   public boolean checkdupesmodal() throws Exception
    {
 	   /*WebDriverWait wait = new WebDriverWait(driver, 10);
 	   wait.until(ExpectedConditions.visibilityOf(cdupesModal));*/
+	   Thread.sleep(500);
 	  	   if (cdupesModal.isDisplayed()) {
 		   
          return true;}

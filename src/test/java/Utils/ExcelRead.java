@@ -56,7 +56,7 @@ public String getCelldata(int sheetIndex,int rownum,int columnum)
 public int getrowcount(int sheetIndex)
  {
 	sh=wb.getSheetAt(sheetIndex);
-	rowcount = sh.getLastRowNum()-sh.getFirstRowNum();
+	rowcount = sh.getLastRowNum();
 	 return rowcount;
  }
 public int getcolumncount(int sheetIndex)

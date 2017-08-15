@@ -10,6 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * @author ksasidharan
+ *
+ */
 public class Address {
     WebDriver driver;
 
@@ -54,32 +58,37 @@ public Address(WebDriver driver) {
 	  
   }
 
-public void setriskAddress1(String address1)
+public void setriskAddress1(String address1) throws Exception
 {
 	rAddress1.clear();
 	rAddress1.sendKeys(address1);
+	
 
 }
-public Boolean checkAddressExists()
+public Boolean checkAddressExists() throws InterruptedException 
 {
-	
+	Thread.sleep(500);
+	try{
 	if (sweetAlert.isDisplayed())
-	{
-		
-		return true;
+					{return true;
+	}}
+	catch(Exception e){}
+	return false;
 	}
-	return null;
-	}
-public void setriskaddress2(String address2)
+public void clicksweetalert()
+{
+	confirm.click();
+}
+
+public void setriskaddress2(String address2) throws Exception 
 {  
-	rAddress2.click();
-	Boolean sweetalert=checkAddressExists();
-	if (sweetalert)
-	{
-		
-		sweetAlert.click();
-	}
+	
 	rAddress2.clear();
+	Boolean dupaddress=checkAddressExists();
+	   if (dupaddress)
+	   {
+		  clicksweetalert();
+	   }
 	rAddress2.sendKeys(address2);
 
 }
@@ -106,7 +115,7 @@ public void setmAddress1(String address1)
 public void setmaddress2(String address2)
 {
 	mAddress2.clear();
-	mAddress2.sendKeys(address2);
+		mAddress2.sendKeys(address2);
 
 }
 public void setmCity(String city)
@@ -142,6 +151,7 @@ public void setPState(String state)
           if (State.getText().equals(state))
             {
         	  State.click();
+        	  break;
              }
           }    
 
@@ -160,6 +170,7 @@ public void setMState(String state)
           if (State.getText().equals(state))
             {
         	  State.click();
+        	  break;
              }
           }    
 
@@ -176,9 +187,10 @@ public void setCounty_Parish(String county)
 
 	     for (WebElement parish:county1)
 	         {
-	          if (parish.getText().equals(county1))
+	          if (parish.getText().equals(county))
 	            {
 	        	  parish.click();
+	        	  break;
 	             }
 	          }    
 

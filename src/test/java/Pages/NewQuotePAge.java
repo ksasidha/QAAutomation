@@ -92,9 +92,10 @@ public class NewQuotePAge {
 	  
  
 public void setContact(String contact)
+
   {   driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]")).click();
-	  driver.findElement(By.xpath(".//*[@id='ContactsDropDown-list']/div/child::ul/child::li[contains(text(),'"+contact+"')]")).click();
-	  
+	  driver.findElement(By.xpath(".//*[@id='ContactsDropDown-list']/div/child::ul/child::li[contains(text(),'"+contact+"')]")).click();	
+		  
   }
 public void setCoapp(String coApp) {
 	     

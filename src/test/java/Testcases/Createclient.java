@@ -34,7 +34,7 @@ public class Createclient extends TestBase{
 	
 		
   @Test
-  public void createClient() throws IOException {
+  public void createClient() throws Exception {
 	  //Login to application
 	  WebDriverWait wait;
 	  ExcelRead er=new ExcelRead("C:\\Kripa\\Automation\\Selenium\\Automationqa\\src\\test\\java\\Utils\\Testdata.xlsx");
@@ -88,7 +88,7 @@ public class Createclient extends TestBase{
 	  nqp.setCoapp(er.getCelldata(2,i,0));
 	  //Set the coapp details if there is coapp else go to SF Auto
 	  String coapp=er.getCelldata(2,i,0);
-	  if (coapp.equalsIgnoreCase("true"))
+	  if (coapp.equalsIgnoreCase("yes"))
 			  {
 	  nqp.setCoappDetails(er.getCelldata(2,i,1), er.getCelldata(2,i,2), er.getCelldata(2,i,3));
 			  }
@@ -96,14 +96,14 @@ public class Createclient extends TestBase{
 	  
 	  //Set SF AUto policy number if it is there
 	  String SFAuto=er.getCelldata(2,i,4);
-	  if (SFAuto.equalsIgnoreCase("true"))
+	  if (SFAuto.equalsIgnoreCase("yes"))
 	  {
 		  nqp.setSFAutoNumber(er.getCelldata(2,i,5));
 	  }
 	  nqp.setFlood(er.getCelldata(2,i,6));
 	  nqp.setExDoverBayClient(er.getCelldata(2,i,7));
 	  String DBClient=er.getCelldata(2,i,7);
-	   if (DBClient.equalsIgnoreCase("true"))
+	   if (DBClient.equalsIgnoreCase("yes"))
 	   {
 		   nqp.setDBPolicyNum(er.getCelldata(2,i,8));
 	   }
@@ -113,20 +113,28 @@ public class Createclient extends TestBase{
 	   nqp.clickNext();
 	  //Enter address details
 	   address=new Address(driver);
-	   address.setriskAddress1(er.getCelldata(3,i,0));
 	   String riskaddress1=er.getCelldata(3,i,0);
+	   address.setriskAddress1(er.getCelldata(3,i,0));
 	   address.setriskaddress2(er.getCelldata(3,i,1));
+	   String raddress2=er.getCelldata(3,i,1);
 	   address.setriskCity(er.getCelldata(3,i,2));
+	   String raddresscity=er.getCelldata(3,i,2);
 	   address.setPState(er.getCelldata(3,i,3));
+	   String raddressState=er.getCelldata(3,i,3);
 	   address.setriskZip(er.getCelldata(3,i,4));
+	   String raddresszip=er.getCelldata(3,i,4);
 	   address.setmAddress1(er.getCelldata(3,i,5));
-	   String maiingAddress1=er.getCelldata(3,i,5);
+	   String mailingAddress1=er.getCelldata(3,i,5);
 	   address.setmaddress2(er.getCelldata(3,i,6));
+	   String  maddress2=er.getCelldata(3,i,6);
 	   address.setmCity(er.getCelldata(3,i,7));
+	   String mcity=er.getCelldata(3,i,7);
 	   address.setMState(er.getCelldata(3,i,8));
+	   String mstate=er.getCelldata(3,i,8);
 	   address.setmZip(er.getCelldata(3,i,9));
+	   String mzip=er.getCelldata(3,i,9);
 	   //check if the reason for difference in MAiling address needs to be enetered.
-	   if (riskaddress1!=maiingAddress1)
+	   if ((riskaddress1!=mailingAddress1)||(raddress2!=maddress2)||(raddresscity!=mcity)||(raddressState!=mstate)||(raddresszip!=mzip))
 	   {
 		   
 		   address.setMailingAddressDiff(er.getCelldata(3,i,10));
