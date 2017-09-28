@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Testcases.Createclient">
+      <class name="Testcases.TC_CreateQuote">
         <methods>
+          <include name="createValidQuote"/>
           <include name="Setup"/>
           <include name="CloseBrowser"/>
-          <include name="createClient"/>
         </methods>
-      </class> <!-- Testcases.Createclient -->
+      </class> <!-- Testcases.TC_CreateQuote -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
