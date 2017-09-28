@@ -27,6 +27,7 @@ public class HomePage {
  	
 
 	WebDriver driver;
+	
  	
  	public HomePage(WebDriver driver) {
  		this.driver=driver;
@@ -36,13 +37,14 @@ public class HomePage {
  	
     @Test
     public void logout(){
-    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     wait.until(ExpectedConditions.visibilityOf(logoutButton));
 	 logoutButton.click();
     }
     
     public void clickNavigationBar(String menuName) {
-    	driver.findElement(By.xpath("//div[contains(@id,'sidebar-wrapper')]/child::ul/child::li/child::a[contains(text(),'"+menuName+"')]")).click();    	    	
+    	 WebDriverWait wait = new WebDriverWait(driver, 60);
+    	wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[contains(@id,'sidebar-wrapper')]/child::ul/child::li/child::a[contains(text(),'"+menuName+"')]")))).click();    	    	
     	
     }
     
@@ -54,9 +56,16 @@ public class HomePage {
     public void Start_SearchClient(String buttonName)
     		
     {       
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+    	 WebDriverWait wait = new WebDriverWait(driver, 30);
     	wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(".//*[@id='ClientModal']/div/div/div[2]/a[contains(text(),'"+buttonName+"')]"))));
     	driver.findElement(By.xpath(".//*[@id='ClientModal']/div/div/div[2]/a[contains(text(),'"+buttonName+"')]")).click();    	
+    }
+    
+    public void startNewClient()
+    {
+    	
+    	clickNavigationBar("Client Management");
+    	Start_SearchClient("Start A New Client");
     }
 
 }

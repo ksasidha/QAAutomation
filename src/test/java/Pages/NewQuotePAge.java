@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class NewQuotePAge {
@@ -58,6 +60,8 @@ public class NewQuotePAge {
   
   @FindBy(id="bNextFake")
   WebElement nextButton;
+  
+
 
  WebDriver driver;
   
@@ -93,8 +97,15 @@ public class NewQuotePAge {
  
 public void setContact(String contact)
 
-  {   driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]")).click();
+  {   
+	  WebDriverWait wait=new WebDriverWait(driver,10);
+	 // wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]"))));
+	  wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text()='Select Existing Contact Information...']"))));
+	  //driver.findElement(By.xpath(".//*[@id='frmAppPolicyHolder']/div[2]/div[7]/div/span/span/span[1]")).click();
+	  driver.findElement(By.xpath("//span[text()='Select Existing Contact Information...']")).click();
+	  
 	  driver.findElement(By.xpath(".//*[@id='ContactsDropDown-list']/div/child::ul/child::li[contains(text(),'"+contact+"')]")).click();	
+	  
 		  
   }
 public void setCoapp(String coApp) {
@@ -169,4 +180,34 @@ public void setCoapp(String coApp) {
 	  
   }
   
+  
+  public  void setPolicyHolder(String contact,String coApp,String coAppFname,String coAppLname,String coAppdob,String sfAuto,String autoNum,String flood,String dbClient,String DBPOlicy,String Pcarrier)
+  {   
+	  setContact(contact);
+	  setCoapp(coApp);
+	  if(coApp.equalsIgnoreCase("yes"))
+	  {
+		  setCoappDetails(coAppFname,coAppLname,coAppdob);
+		  
+	  }
+	  setSFAutoPolicy(sfAuto);
+	  if (sfAuto.equalsIgnoreCase("yes"))
+	  {
+		 setSFAutoNumber(autoNum);
+	  }
+	  setFlood(flood);
+	  setExDoverBayClient(dbClient);
+	  if(dbClient.equalsIgnoreCase("yes"))
+	  {
+		  
+		  setDBPolicyNum(DBPOlicy);
+	  }
+	  else 
+	  {
+		  setPriorCarrier(Pcarrier);
+	  }
+	  clickNext();
+	  
+	  
+  }
 }
