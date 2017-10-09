@@ -76,6 +76,7 @@ public class FireProtection extends TestBase{
 	  setFireHydrant(fireHydrant);
 	  setDwellingAccessible(dwellingAccessible);
 	  clickNext();
+	  
   }
 }
 

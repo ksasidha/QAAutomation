@@ -14,7 +14,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ClientManagement {
+import Testcases.TestBase;
+
+public class ClientManagement extends TestBase{
 	
 	//adding comment to code to
 	// changing the doo
@@ -189,7 +191,7 @@ public class ClientManagement {
 	}
 	public void setMAddress2(String maddress2)
 	{
-		
+			
 		mAddress2.clear();
 		mAddress2.sendKeys(maddress2);
 		
@@ -232,13 +234,13 @@ public class ClientManagement {
     	contact.clear();
     	contact.sendKeys(Contact);
     }	
- public String clickNext()
+/* public void clickNext()
  {
 	 
 	 CreateQuote.click();
 	String str=driver.getCurrentUrl();
 	return str;
- }
+ }*/
     
    /* public void createNewQuote() throws Exception
     {
@@ -309,7 +311,7 @@ public class ClientManagement {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	 
+	   	waitForPageToLoad(10);
  }
 		 	 
 		    

@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-public class Coverage {
+import Testcases.TestBase;
+
+public class Coverage extends TestBase{
 	
 	@FindBy(id="CoverageA")
 	WebElement CoverageA;
@@ -234,6 +236,6 @@ public class Coverage {
 		  next.click();
 		 /* WebDriverWait wait = new WebDriverWait(driver, 60);
 		  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(".//*[@id='divLoading']/img"))));*/
-		  Thread.sleep(1000);
+		  waitForPageToLoad(10);
 	  }
 }

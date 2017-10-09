@@ -3,8 +3,10 @@ package Pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -50,7 +52,7 @@ WebElement  diffMailingAddress;
 @FindBy(xpath=".//*[@class='sweet-alert showSweetAlert visible']")
 WebElement sweetAlert;
 
-@FindBy(xpath="//button[@class='confirm']")
+@FindBy(className="confirm")
 WebElement confirm;
 
 @FindBy(id="bNext")
@@ -76,6 +78,17 @@ WebElement enteredPhys;
 public	
 WebElement enteredmail;
 
+@FindBy(xpath="(//span[@class='k-input'])[6]")
+public	
+WebElement spanparish;
+
+@FindBy(xpath="//ul[@id='LParish_listbox']")
+public	
+WebElement ulparish;
+
+@FindBy(xpath="//ul[@id='LParish_listbox']/li")
+public	
+List<WebElement> liparish;
   
 public Address(WebDriver driver) {
 	  
@@ -117,7 +130,7 @@ public void setriskaddress2(String address2) throws Exception
 {  
 	
 	rAddress2.clear();
-	try
+	try 
 	{
 	Boolean dupaddress=checkAddressExists();
 	   if (dupaddress)
@@ -215,7 +228,7 @@ public void setMState(String state)
 
   }
 public Boolean checkPAValidation() throws Exception {
-	WebDriverWait wait = new WebDriverWait(driver, 5);
+	WebDriverWait wait = new WebDriverWait(driver, 1);
 
 	//Thread.sleep(500);
 	try
@@ -227,7 +240,7 @@ public Boolean checkPAValidation() throws Exception {
 	return false;
 }
 public Boolean checkMAValidation() throws Exception {
-	WebDriverWait wait = new WebDriverWait(driver, 5);
+	WebDriverWait wait = new WebDriverWait(driver, 1);
 
 	// Thread.sleep(500);
 	try{wait.until(ExpectedConditions.visibilityOf(mAddressmodal));
@@ -266,7 +279,7 @@ public void maddressValidation() throws InterruptedException
 		   driver.findElement(By.id("useEnteredMail")).click();
 	   }
 }
-public void setCounty_Parish(String county)
+/*public void setCounty_Parish(String county)
 {
 	
        WebDriverWait wait=new WebDriverWait(driver,5);
@@ -286,7 +299,20 @@ public void setCounty_Parish(String county)
            }
         }   
 
+}*/
+
+public void setCounty_ParishIE(String county)
+{
+	selectfromdropdown(20, spanparish, ulparish, liparish, county);
+
 }
+
+public void setCounty_ParishChrome(String county)
+{
+	selectfromparishdropdown(20, spanparish, ulparish, liparish, county);
+
+}
+
 
 /*public void setCounty_Parish(String county)
 {
@@ -353,12 +379,13 @@ public void checkMAModal()
 	
 }
 public void SaveandNext() throws InterruptedException
-{
+{ 
+	//waitforelementtobeclickable(next,10);
 	next.click();
 	//Thread.sleep(300);
 	
-	try {
-		  waitforelementtobeclickable(confirm, 1);
+	/*try {
+		  waitforelementtobeclickable(confirm, 5);
 		  if(confirm.isDisplayed())
 		  {
 			  
@@ -368,8 +395,8 @@ public void SaveandNext() throws InterruptedException
 		
 	}catch(Exception e)
 	{
-		
-	}
+		e.printStackTrace();
+	}*/
 	try {
 		Boolean paddressvalidation=checkPAValidation();
 		if (paddressvalidation)
@@ -396,6 +423,7 @@ public void SaveandNext() throws InterruptedException
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	
 	
 }
@@ -489,8 +517,16 @@ public void setRiskAddress(String address1,String address2,String city,String ps
 		   
 		   setMailingAddressDiff(mailingdiffreason);
 	   }
-	setCounty_Parish(parish);
+	if(driver instanceof ChromeDriver)
+	{
+		setCounty_ParishChrome(parish);
+	}
+	setCounty_ParishIE(parish);
 	SaveandNext();	
+	waitForPageToLoad(5);
+	//waitforelementtobevisible(driver.findElement(By.id("Convictions")),90);
+
 }
 
+	
 }

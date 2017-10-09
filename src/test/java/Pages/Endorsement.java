@@ -64,6 +64,9 @@ public class Endorsement extends TestBase{
 	
 	@FindBy(id="bSave")
 	WebElement save;
+	
+	@FindBy(id="bNext")
+	WebElement bnext;
 
 
 
@@ -276,7 +279,9 @@ public void clickupdate()
 {
 	update.click();
     WebDriverWait wait = new WebDriverWait(driver, 3);
-	wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(".//*[@id='divLoading']/img"))));
+    try {
+	wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(".//*[@id='divLoading']/img"))));}catch(Exception e) {		
+		}
 }
 
 public void save()
@@ -315,11 +320,13 @@ public void save()
 			setPersonorHOAorCorp(AI[i][0],AI[i][1],AI[i][2],AI[i][3],AI[i][4]);				
 			setAddress(AI[i][5],AI[i][6] ,AI[i][7],AI[i][8]);
 			clickupdate();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
+			waitForPageToLoad(5);
 			//save();
 			
 			 
 	 }	
+		waitforelementtobeclickable(bnext,10);
 		clickNext();
 		    
 	}

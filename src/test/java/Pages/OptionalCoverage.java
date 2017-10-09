@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,12 +16,15 @@ public class OptionalCoverage extends TestBase{
 	List<WebElement> eqCoverage;	
 	
 	@FindBy(xpath="(//span[@class='k-input'])[2]")
+	@CacheLookup
 	WebElement spanEQDeductile;
 	
 	@FindBy(id="EarthquakeDeductible_listbox")
+	@CacheLookup
 	WebElement ulEQDeductile;	
 	
 	@FindBy(xpath=".//*[@id='EarthquakeDeductible_listbox']/li")
+	@CacheLookup
 	List<WebElement> liEQDeductile;
 	
 		
@@ -60,7 +64,7 @@ public class OptionalCoverage extends TestBase{
 
 	public void setEQCoverage(String earthquake)
 	{
-		selectRadioOption(30, eqCoverage, earthquake);
+		selectRadioOption(eqCoverage, earthquake);
 	}
 
 	public void setEQDeductible(String deductible)
@@ -71,39 +75,39 @@ public class OptionalCoverage extends TestBase{
 	public void setHighRisk(String highRisk)	  
 	{
 
-		selectRadioOption(30, highrisk, highRisk);
+		selectRadioOption(highrisk, highRisk);
 	}
 
 	public void setMasonaryChimney(String masonarychimney)
 	{
-		selectRadioOption(30, highRiskMasonryChimney, masonarychimney);
+		selectRadioOption(highRiskMasonryChimney, masonarychimney);
 
 	}
 	public void setCripplewall(String cripplewall)
 	{
 
-		selectRadioOption(30, highRiskElevatedCrippleWall, cripplewall);
+		selectRadioOption(highRiskElevatedCrippleWall, cripplewall);
 	}
 	public void setconstructionmaterial(String material)
 	{
-		selectRadioOption(30, differentConstructionMaterial, material);
+		selectRadioOption(differentConstructionMaterial, material);
 	}
 	
 	public void setSlope(String slopedegree)
 	{
 		
-		selectRadioOption(30, slope, slopedegree);
+		selectRadioOption(slope, slopedegree);
 	}
 	
 	public void setCliffdistance(String cliff)
 	{
-		selectRadioOption(30, cliffDistance, cliff);
+		selectRadioOption(cliffDistance, cliff);
 		
 	}
 	
 	public void setSolidGround(String solid)
 	{
-		selectRadioOption(30, solidGround, solid);		
+		selectRadioOption(solidGround, solid);		
 	}
 	
 	

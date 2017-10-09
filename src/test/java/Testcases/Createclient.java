@@ -37,7 +37,7 @@ public class Createclient extends TestBase  {
 		
   @Test
   public void createClient() throws Exception {
-	  //Login to application
+	  //Login to application 
 	  WebDriverWait wait;
 	  ExcelRead er=new ExcelRead("C:\\Kripa\\Automation\\Selenium\\Automationqa2\\src\\test\\java\\Utils\\Testdata.xlsx");
 	  
@@ -45,6 +45,7 @@ public class Createclient extends TestBase  {
 	  
 	  for (int i=1;i<=er.getrowcount(1);i++)
 	  {    
+		  
 		  
 		  String username=er.getCelldata(0, i, 0);
 		  String pass=er.getCelldata(0, i, 1);
@@ -137,7 +138,7 @@ public class Createclient extends TestBase  {
 	   else 
 		   nqp.setPriorCarrier(er.getCelldata(2,i,9));
 	 
-	   nqp.clickNext();
+	   nqp.clickNextButton();
 	  //Enter address details
 	   address=new Address(driver);
 	   String addressurl=driver.getCurrentUrl();
@@ -167,7 +168,7 @@ public class Createclient extends TestBase  {
 		   
 		   address.setMailingAddressDiff(er.getCelldata(3,i,10));
 	   }
-	   address.setCounty_Parish(er.getCelldata(3,i,11));
+	   address.setCounty_ParishChrome(er.getCelldata(3,i,11));
 	   address.SaveandNext();
 	   /*String currenturl3=driver.getCurrentUrl();
 	   if(addressurl.contentEquals(currenturl3))

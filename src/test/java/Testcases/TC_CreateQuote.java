@@ -38,6 +38,9 @@ public class TC_CreateQuote extends TestBase{
 	Summary summary;
 	OptionalCoverage optionalCoverage;
 	
+	
+	
+	
 	@Test
 	public void createValidQuote() throws Exception
 	{
@@ -178,7 +181,7 @@ public class TC_CreateQuote extends TestBase{
       String Lossassessment=er.getCelldata(14, i, 1);
       String CovD=er.getCelldata(14, i, 2);
       String Additionalinsured=er.getCelldata(14, i, 3);
-      String numAi=er.getCelldata(15, i, 4);
+      String numAi=er.getCelldata(14, i, 4);
       String AItype1=er.getCelldata(15, i, 0);
       String Fname1=er.getCelldata(15, i, 1);
       String Lname1=er.getCelldata(15, i, 2);
@@ -245,6 +248,8 @@ public class TC_CreateQuote extends TestBase{
 		login=new Login(driver);
 		login.logintoApplication(username, password, aor);
 		
+	   
+		
 		//Start a new Client
 		homepage=new HomePage(driver);
 		homepage.startNewClient();
@@ -257,9 +262,7 @@ public class TC_CreateQuote extends TestBase{
 		
 		//Create a quote
 		  
-		
-		
-		policyholder=new NewQuotePAge(driver);
+		/*policyholder=new NewQuotePAge(driver);
 		address =new Address(driver);
 		losses=new LossHistory(driver);
 		generalinfo=new Generalinfo(driver);
@@ -271,24 +274,36 @@ public class TC_CreateQuote extends TestBase{
 		coverage=new Coverage(driver);
 		summary=new Summary(driver);
 		endorsement=new Endorsement(driver);
-		optionalCoverage=new OptionalCoverage(driver);
+		optionalCoverage=new OptionalCoverage(driver);*/
 		
 		
 		
+		
+		policyholder=new NewQuotePAge(driver);
 		policyholder.setPolicyHolder(phone, coapp, coappFname, coappLname, coappDob, sfAutoPolicy, sfAutopolicynum, flood, exDoverBayClient, dbClientPolicyNum, priorCarrier);
+		address =new Address(driver);
 		address.setRiskAddress(riskaddress1, raddress2, raddresscity,raddressState,raddresszip, mailingAddress1, maddress2, mcity1, mstate1, mzip1, parish_county, mailingaddressdiffreason);
+		losses=new LossHistory(driver);
 		losses.setLosses(pastConv, prior5yrs, losses5yrs, prior3yrs, losses3yrs, nonweather);
+		generalinfo=new Generalinfo(driver);
 		generalinfo.setPropertyGeneralinfo(year, yearpurchased, squarefeet, damage, landfill, rdate, ercost, rsource, construction, story, prefab, mobile, reno, renoComm);
+		homeexterior=new HomeExterior(driver);
 		homeexterior.setHomeExterior(roofReplace, roofyear, roofCover, Foundation, spool, fence);
+		homeinterior=new HomeInterior(driver);
 		homeinterior.setHomeInterior(solidFuel, appList, appInst, ventsys, woodBurn, soleSource);
+		safetyfeatures=new SafetyFeatures(driver);
 		safetyfeatures.setSafteyFeatures(locks, stationBurglar, burglarAlarmType, stationFire, fireAlarmType);
+		fireprotection=new FireProtection(driver);
 		fireprotection.setFireProtection(cityLimits, fireDepartment, fireHydrant, dwellingAccessible);
+		occupancy=new Occupancy(driver);
 		occupancy.setOccupancy(propertyType, unit, dwelling, boarders, occupancystatus, insured, hopolicy, secondary, rent, weeks, basement, animals, wild, bite, business, type, incioffice, clients, visits);
+		coverage=new Coverage(driver);
 		coverage.setCoverage(effective, liability, medical, hoIncLimits, hobIncLimits, hoCovB, hobCovB, bol, peril, hurr);
 		if(raddressState.equalsIgnoreCase("SC"))
-		{
+		{   optionalCoverage=new OptionalCoverage(driver);
 			optionalCoverage.setOptionalCoverage(earthquake, deductible, highRisk, masonarychimney, cripplewall, material, slopedegree, cliff, solid);
 		}
+		endorsement=new Endorsement(driver);
 		endorsement.setEndorsements(contractorsInterest, Lossassessment, CovD, Additionalinsured, numAi, AI);
 		
 		homepage.logout();

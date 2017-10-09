@@ -28,7 +28,7 @@ public class Client extends TestBase{
 			 login=new Login(driver);
 			 String email=er.getCelldata(0,1,0);
 			 String pass=er.getCelldata(0,1,1);
-			 login.logintoApplication(email, pass);
+			 login.logintoApplication(email, pass, pass);
 			 client=new ClientManagement(driver);	
 			 homepage=new HomePage(driver);
 

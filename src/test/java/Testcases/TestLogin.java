@@ -52,7 +52,7 @@ public class TestLogin {
     @Test(dataProvider="userdata")
     public void verifyvalidlogin(String email,String pass){
 	  l=new Login(driver);
-	  l.logintoApplication(email, pass);
+	  l.logintoApplication(email, pass, pass);
 	  hp=new HomePage(driver);
 	  boolean verifyText=hp.verifyText();
 	  Assert.assertTrue(verifyText);

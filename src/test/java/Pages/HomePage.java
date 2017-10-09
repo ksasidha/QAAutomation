@@ -29,7 +29,7 @@ public class HomePage {
 	WebDriver driver;
 	
  	
- 	public HomePage(WebDriver driver) {
+ 	public HomePage(WebDriver driver) { 
  		this.driver=driver;
  		PageFactory.initElements(driver, this);
  	}
@@ -42,17 +42,21 @@ public class HomePage {
 	 logoutButton.click();
     }
     
+    //Identifies the side navigation links  through generic xpath.(Quote,policy,Client,Reports)
     public void clickNavigationBar(String menuName) {
-    	 WebDriverWait wait = new WebDriverWait(driver, 60);
+    	 WebDriverWait wait = new WebDriverWait(driver, 30);
     	wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[contains(@id,'sidebar-wrapper')]/child::ul/child::li/child::a[contains(text(),'"+menuName+"')]")))).click();    	    	
     	
     }
+    
+    //Verify the side wrapper is present to make sure login is successful. 
     
     public boolean verifyText() {
     	boolean TT=verifyNavBar.isDisplayed();
     	return TT;
     }
     
+    // Identifies the button on the Client Management modal using generic xpath.(Need to pass the text on the button)
     public void Start_SearchClient(String buttonName)
     		
     {       
@@ -66,6 +70,13 @@ public class HomePage {
     	
     	clickNavigationBar("Client Management");
     	Start_SearchClient("Start A New Client");
+    }
+    
+    public void SearchNewClient()
+    {
+    	
+    	clickNavigationBar("Client Management");
+    	Start_SearchClient("Search for a Client");
     }
 
 }

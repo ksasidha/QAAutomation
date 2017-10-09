@@ -5,8 +5,8 @@
     <classes>
       <class name="Testcases.TC_CreateQuote">
         <methods>
+          <include name="setup"/>
           <include name="createValidQuote"/>
-          <include name="Setup"/>
           <include name="CloseBrowser"/>
         </methods>
       </class> <!-- Testcases.TC_CreateQuote -->
